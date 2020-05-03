@@ -29,13 +29,16 @@ spec:
       storage: 20Gi
   storageClassName: standard
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cayley
   namespace: cayley
 spec:
   replicas: 1 # cannot be really scaled because of local backend
+  selector:
+    matchLabels:
+      app: cayley
   template:
     metadata:
       namespace: cayley
